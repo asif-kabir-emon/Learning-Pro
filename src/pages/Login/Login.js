@@ -105,7 +105,7 @@ const Login = () => {
               </Link>
             </div>
 
-            <hr className="h-1 bg-slate-800 mt-6 mx-2" />
+            <hr className="h-1 bg-slate-500 mt-6 mx-3" />
             <p className="text-center text-lg font-bold mt-2">Login using</p>
 
             <div className="flex justify-center">
