@@ -1,9 +1,59 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGithub } from "@react-icons/all-files/fa/FaGithub";
 import googleIcon from "../../assets/icons/googleIcon.png";
+import { AuthContext } from "../../context/UserContexts";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const { user, loginWithEmailPassword, loginWithGoogle, loginWithGithub } =
+    useContext(AuthContext);
+  const [error, setError] = useState("");
+
+  const handleLoginSubmit = (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    // console.log(email, password);
+
+    loginWithEmailPassword(email, password)
+      .then(() => {
+        setError("");
+        toast.success("Successfully login");
+      })
+      .catch((error) => {
+        setError(error.message);
+        toast.error("Failed to login");
+      });
+  };
+
+  const handleGoogleLogin = (event) => {
+    event.preventDefault();
+
+    loginWithGoogle()
+      .then(() => {
+        console.log("Successfully Login");
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  };
+
+  const handleGithubLogin = (event) => {
+    event.preventDefault();
+
+    loginWithGithub()
+      .then(() => {
+        console.log("Successfully Login");
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  };
+
   return (
     <div className="hero min-h-screen bg-slate-200">
       <div className="hero-content flex flex-col">
@@ -12,7 +62,8 @@ const Login = () => {
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <div className="card-body">
-            <form>
+            <form onSubmit={handleLoginSubmit}>
+              <p className="text-red-700 text-base text-center mb-2">{error}</p>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text text-lg">Email</span>
@@ -59,18 +110,19 @@ const Login = () => {
 
             <div className="flex justify-center">
               <div className="my-2 mx-3">
-                <button className="btn bg-blue-500 hover:bg-blue-600 border-blue-500 hover:border-blue-600 normal-case text-lg">
-                  <img
-                    src={googleIcon}
-                    alt=""
-                    srcset=""
-                    className=" h-5 mr-2"
-                  />
+                <button
+                  onClick={handleGoogleLogin}
+                  className="btn bg-blue-500 hover:bg-blue-600 border-blue-500 hover:border-blue-600 normal-case text-lg"
+                >
+                  <img src={googleIcon} alt="" className=" h-5 mr-2" />
                   <span>Google</span>
                 </button>
               </div>
               <div className="my-2 mx-3">
-                <button className="btn btn-black normal-case text-lg">
+                <button
+                  onClick={handleGithubLogin}
+                  className="btn btn-black normal-case text-lg"
+                >
                   <FaGithub className="mr-2"> </FaGithub> GitHub
                 </button>
               </div>
