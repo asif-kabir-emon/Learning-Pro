@@ -6,7 +6,10 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   return (
     <div className="bg-slate-400 flex items-center w-full py-2">
-      <NavLink to="/" className="btn btn-ghost normal-case text-xl lg:text-2xl">
+      <NavLink
+        to="/"
+        className="btn btn-ghost hover:none normal-case text-xl lg:text-2xl"
+      >
         <img src="logo.png" alt="" srcset="" className="w-6 lg:w-8 mr-2" />
         Learning Pro
       </NavLink>
@@ -34,7 +37,7 @@ const Header = () => {
           <NavLink to="/login">Login</NavLink>
         </li>
         <li className="md:mx-3 text-lg">
-          <NavLink to="/home">Register</NavLink>
+          <NavLink to="/register">Register</NavLink>
         </li>
       </ul>
     </div>
