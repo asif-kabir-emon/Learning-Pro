@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import { FaGoogle } from "@react-icons/all-files/fa/FaGoogle";
 import { FaGithub } from "@react-icons/all-files/fa/FaGithub";
 import googleIcon from "../../assets/icons/googleIcon.png";
 
@@ -19,8 +18,9 @@ const Login = () => {
                   <span className="label-text text-lg">Email</span>
                 </label>
                 <input
-                  type="text"
-                  placeholder="email"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
                   className="input input-bordered border-2"
                 />
               </div>
@@ -29,8 +29,9 @@ const Login = () => {
                   <span className="label-text text-lg">Password</span>
                 </label>
                 <input
-                  type="text"
-                  placeholder="password"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
                   className="input input-bordered border-2"
                 />
                 <label className="label">
@@ -39,28 +40,38 @@ const Login = () => {
                   </Link>
                 </label>
               </div>
-              <div className="form-control mt-4 mb-6">
+              <div className="form-control mt-4">
                 <button className="btn btn-primary" type="submit">
                   Login
                 </button>
               </div>
             </form>
-            <hr className="border-2 border-black mr-2" />
+
+            <div className="mt-2">
+              Don't Have Account? Please
+              <Link to="/register" className="text-primary ml-1 underline">
+                Register
+              </Link>
+            </div>
+
+            <hr className="h-1 bg-slate-800 mt-6 mx-2" />
+            <p className="text-center text-lg font-bold mt-2">Login using</p>
+
             <div className="flex justify-center">
-              <div className="my-4 mx-4">
-                <button className="btn bg-blue-500 hover:bg-blue-500 border-blue-600 normal-case text-lg">
+              <div className="my-2 mx-3">
+                <button className="btn bg-blue-500 hover:bg-blue-600 border-blue-500 hover:border-blue-600 normal-case text-lg">
                   <img
                     src={googleIcon}
                     alt=""
                     srcset=""
-                    className=" h-5 mr-1"
-                  />{" "}
+                    className=" h-5 mr-2"
+                  />
                   <span>Google</span>
                 </button>
               </div>
-              <div className="my-4 mx-4">
+              <div className="my-2 mx-3">
                 <button className="btn btn-black normal-case text-lg">
-                  <FaGithub className="mr-1"> </FaGithub> GitHub
+                  <FaGithub className="mr-2"> </FaGithub> GitHub
                 </button>
               </div>
             </div>
