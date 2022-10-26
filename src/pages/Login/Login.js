@@ -6,7 +6,7 @@ import { AuthContext } from "../../context/UserContexts";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const { user, loginWithEmailPassword, loginWithGoogle, loginWithGithub } =
+  const { loginWithEmailPassword, loginWithGoogle, loginWithGithub } =
     useContext(AuthContext);
   const [error, setError] = useState("");
 
@@ -22,6 +22,7 @@ const Login = () => {
     loginWithEmailPassword(email, password)
       .then(() => {
         setError("");
+        form.reset();
         toast.success("Successfully login");
       })
       .catch((error) => {
@@ -55,13 +56,13 @@ const Login = () => {
   };
 
   return (
-    <div className="hero min-h-screen bg-slate-200">
-      <div className="hero-content flex flex-col">
-        <div className="text-center">
-          <h1 className="text-5xl font-bold">Please Login Now </h1>
+    <div className="min-h-screen bg-slate-200">
+      <div className="flex flex-col items-center">
+        <div className="mt-20 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold">Please Login Now</h1>
         </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <div className="card-body">
+        <div className="mt-6 rounded-lg w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="px-5 py-3">
             <form onSubmit={handleLoginSubmit}>
               <p className="text-red-700 text-base text-center mb-2">{error}</p>
               <div className="form-control">

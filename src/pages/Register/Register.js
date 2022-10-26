@@ -59,13 +59,15 @@ const Register = () => {
   };
 
   return (
-    <div className="hero min-h-screen bg-slate-200">
-      <div className="hero-content flex flex-col">
-        <div className="text-center">
-          <h1 className="text-5xl font-bold">Please Register Now </h1>
+    <div className="min-h-screen bg-slate-200">
+      <div className="flex flex-col items-center">
+        <div className="mt-20 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold">
+            Please Register Now
+          </h1>
         </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <div className="card-body">
+        <div className="mt-6 rounded-lg w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="px-5 py-3">
             <form onSubmit={handleRegister}>
               <p className="text-red-700 text-base text-center mb-2">{error}</p>
               <div className="form-control">
@@ -121,7 +123,7 @@ const Register = () => {
                     className="checkbox checkbox-md checkbox-accent text-black"
                   />
                   <span className="label-text ml-1 text-base">
-                    Accept{" "}
+                    Accept
                     <Link to="/terms" className="text-blue-600">
                       Tearms and Conditions
                     </Link>
