@@ -2,18 +2,40 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
 import Blog from "../pages/Blog/Blog";
+import Courses from "../pages/Courses/Courses";
 import Login from "../pages/Login/Login";
 import ErrorPage from "../pages/Others/ErrorPage/ErrorPage";
 import Terms from "../pages/Others/Terms/Terms";
 import Register from "../pages/Register/Register";
+import CoursesLayout from "../layout/CoursesLayout";
 
 const routes = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
     children: [
-      { path: "/", element: <div>Home</div> },
-      { path: "/courses", element: <div>Home</div> },
+      {
+        path: "/",
+        element: <CoursesLayout></CoursesLayout>,
+        children: [
+          {
+            path: "/",
+            element: <Courses></Courses>,
+            loader: () => fetch("http://localhost:4000/courses"),
+          },
+          {
+            path: "/courses",
+            element: <Courses></Courses>,
+            loader: () => fetch("http://localhost:4000/courses"),
+          },
+          {
+            path: "/courses/category/:id",
+            element: <Courses></Courses>,
+            loader: ({ params }) =>
+              fetch(`http://localhost:4000/category/${params.id}`),
+          },
+        ],
+      },
       { path: "/blog", element: <Blog></Blog> },
       { path: "/login", element: <Login></Login> },
       { path: "/register", element: <Register></Register> },
