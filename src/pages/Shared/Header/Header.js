@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { AuthContext } from "../../../context/UserContexts";
 import { UserCircleIcon, MoonIcon, SunIcon } from "@heroicons/react/24/solid";
-import Tooltip from "@mui/material/Tooltip";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -22,7 +21,6 @@ const Header = () => {
   };
 
   const handleTheme = () => {
-    // eslint-disable-next-line no-lone-blocks
     if (theme === "light") {
       setTheme("dark");
       localStorage.setItem("theme", "dark");
@@ -54,33 +52,34 @@ const Header = () => {
           <NavLink to="/courses">Courses</NavLink>
         </li>
         <li className="md:mx-3">
-          <NavLink to="/courses">FAQ</NavLink>
+          <NavLink to="/faq">FAQ</NavLink>
         </li>
         <li className="md:mx-3">
           <NavLink to="/blog">Blog</NavLink>
         </li>
         {user?.uid ? (
           <>
-            <li className="mb-2 md:my-0 md:mx-3 text-xl">
+            <li className="mb-2 md:mb-0 md:my-0 md:mx-3 text-xl">
               <button onClick={handleLogOut} className="btn btn-primary btn-sm">
                 Sign Out
               </button>
             </li>
-            <Tooltip title={user?.displayName} arrow>
-              {user?.photoURL ? (
-                <li className="md:mx-3">
+            <li className="md:mx-3">
+              <div
+                className="tooltip tooltip-bottom"
+                data-tip={user.displayName}
+              >
+                {user?.photoURL ? (
                   <div className="avatar">
-                    <div className="h-8 rounded-full ring ring-primary ">
+                    <div className="w-8 rounded-full ring ring-primary ">
                       <img src={user.photoURL} alt="" />
                     </div>
                   </div>
-                </li>
-              ) : (
-                <li className="md:mx-3">
+                ) : (
                   <UserCircleIcon className="h-9"></UserCircleIcon>
-                </li>
-              )}
-            </Tooltip>
+                )}
+              </div>
+            </li>
           </>
         ) : (
           <>

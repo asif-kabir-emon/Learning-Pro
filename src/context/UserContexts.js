@@ -70,6 +70,7 @@ const UserContexts = ({ children }) => {
 
   const authInfo = {
     user,
+    setUser,
     loading,
     setLoading,
     createAccount,

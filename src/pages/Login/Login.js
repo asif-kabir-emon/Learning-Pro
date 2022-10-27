@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 
 const Login = () => {
   const {
+    setUser,
     setLoading,
     loginWithEmailPassword,
     loginWithGoogle,
@@ -74,7 +75,10 @@ const Login = () => {
     loginWithGithub()
       .then((result) => {
         const user = result.user;
+        user.emailVerified = true;
+        console.log(user);
         setError("");
+        setUser(user);
         if (user.emailVerified) {
           toast.success("Successfully login");
           navigate(from, { replace: true });
