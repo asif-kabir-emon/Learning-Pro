@@ -120,6 +120,7 @@ const Login = () => {
                   name="email"
                   placeholder="Email"
                   className="input input-bordered border-2"
+                  required
                 />
               </div>
               <div className="form-control">
@@ -131,12 +132,13 @@ const Login = () => {
                   name="password"
                   placeholder="Password"
                   className="input input-bordered border-2"
+                  required
                 />
-                <label className="label">
+                {/* <label className="label">
                   <Link className="label-text-alt text-lg link link-hover">
                     Forgot password?
                   </Link>
-                </label>
+                </label> */}
               </div>
               <div className="form-control mt-4">
                 <button className="btn btn-primary" type="submit">

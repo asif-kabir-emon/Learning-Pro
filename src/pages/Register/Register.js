@@ -4,7 +4,7 @@ import { AuthContext } from "../../context/UserContexts";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const { createAccount, updateUserProfile, verifyEmail, theme } =
+  const { createAccount, updateUserProfile, verifyEmail, theme, setLoading } =
     useContext(AuthContext);
   const [error, setError] = useState("");
   const [accepted, setAccepted] = useState(false);
@@ -18,18 +18,21 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    // console.log(name, photoURL, email, password);
-
     createAccount(email, password)
       .then(() => {
         setError("");
+        setLoading(false);
         handleUpdateProfile(name, photoURL);
-        handleEmailVerification();
-        toast.success("Successfully Registered. Verify Your Email");
+        // handleEmailVerification();
+        toast.success("Successfully Registered.");
+        form.reset();
       })
       .catch((error) => {
         setError(error.message);
         toast.error("Failed to Register");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -46,13 +49,13 @@ const Register = () => {
       });
   };
 
-  const handleEmailVerification = () => {
-    verifyEmail()
-      .then(() => {})
-      .catch((error) => {
-        console.error(error.message);
-      });
-  };
+  // const handleEmailVerification = () => {
+  //   verifyEmail()
+  //     .then(() => {})
+  //     .catch((error) => {
+  //       console.error(error.message);
+  //     });
+  // };
 
   const handleAccepted = (event) => {
     setAccepted(event.target.checked);
@@ -105,6 +108,7 @@ const Register = () => {
                   name="email"
                   placeholder="Email"
                   className="input input-bordered border-2"
+                  required
                 />
               </div>
               <div className="form-control">
@@ -116,6 +120,7 @@ const Register = () => {
                   name="password"
                   placeholder="Password"
                   className="input input-bordered border-2"
+                  required
                 />
               </div>
 

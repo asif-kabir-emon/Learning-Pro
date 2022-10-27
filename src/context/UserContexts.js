@@ -59,11 +59,9 @@ const UserContexts = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser === null || currentUser.emailVerified) {
+      if (user === null || user.dislayName) {
         setUser(currentUser);
-        console.log("kk");
       }
-
       setLoading(false);
     });
     return () => {
