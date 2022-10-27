@@ -21,7 +21,7 @@ const providerGithub = new GithubAuthProvider();
 
 const UserContexts = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const createAccount = (email, password) => {
     setLoading(true);

@@ -27,14 +27,14 @@ const Login = () => {
     loginWithEmailPassword(email, password)
       .then((result) => {
         const user = result.user;
-        form.reset();
+        setError("");
         if (user.emailVerified) {
           toast.success("Successfully login");
           navigate(from, { replace: true });
         } else {
           toast.error("Please verify your email address.");
         }
-        setError("");
+        form.reset();
       })
       .catch((error) => {
         setError(error.message);
@@ -51,13 +51,13 @@ const Login = () => {
     loginWithGoogle()
       .then((result) => {
         const user = result.user;
+        setError("");
         if (user.emailVerified) {
           toast.success("Successfully login");
           navigate(from, { replace: true });
         } else {
           toast.error("Please verify your email address.");
         }
-        setError("");
       })
       .catch((error) => {
         setError(error.message);
@@ -74,13 +74,13 @@ const Login = () => {
     loginWithGithub()
       .then((result) => {
         const user = result.user;
+        setError("");
         if (user.emailVerified) {
           toast.success("Successfully login");
           navigate(from, { replace: true });
         } else {
           toast.error("Please verify your email address.");
         }
-        setError("");
       })
       .catch((error) => {
         setError(error.message);

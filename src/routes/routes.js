@@ -24,24 +24,30 @@ const routes = createBrowserRouter([
           {
             path: "/",
             element: <Courses></Courses>,
-            loader: () => fetch("http://localhost:4000/courses"),
+            loader: () =>
+              fetch("https://learning-pro-server.vercel.app/courses"),
           },
           {
             path: "/courses",
             element: <Courses></Courses>,
-            loader: () => fetch("http://localhost:4000/courses"),
+            loader: () =>
+              fetch("https://learning-pro-server.vercel.app/courses"),
           },
           {
             path: "/courses/category/:id",
             element: <Courses></Courses>,
             loader: ({ params }) =>
-              fetch(`http://localhost:4000/category/${params.id}`),
+              fetch(
+                `https://learning-pro-server.vercel.app/category/${params.id}`
+              ),
           },
           {
             path: "/course/:id",
             element: <CourseSummary></CourseSummary>,
             loader: ({ params }) =>
-              fetch(`http://localhost:4000/course/${params.id}`),
+              fetch(
+                `https://learning-pro-server.vercel.app/course/${params.id}`
+              ),
           },
           {
             path: "/course-out/:id",
@@ -51,7 +57,9 @@ const routes = createBrowserRouter([
               </PrivateRoute>
             ),
             loader: ({ params }) =>
-              fetch(`http://localhost:4000/course/${params.id}`),
+              fetch(
+                `https://learning-pro-server.vercel.app/course/${params.id}`
+              ),
           },
         ],
       },

@@ -37,7 +37,7 @@ const Course = ({ course }) => {
         </div>
         <div className="card-actions mt-3 justify-center">
           <Link to={`/course/${_id}`} className="w-full">
-            <button className="btn btn-info w-full">Read In Deatils</button>
+            <button className="btn btn-info w-full">Read In Deatil</button>
           </Link>
         </div>
       </div>

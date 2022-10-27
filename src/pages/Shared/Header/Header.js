@@ -34,7 +34,7 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-slate-400 flex items-center w-full py-3">
+    <div className="bg-slate-400 flex items-center w-full py-3 ">
       <NavLink to="/" className="btn btn-ghost normal-case text-xl lg:text-2xl">
         <img src="logo.png" alt="" className="w-6 lg:w-8 mr-2" />
         Learning Pro
@@ -61,20 +61,24 @@ const Header = () => {
         </li>
         {user?.uid ? (
           <>
-            <li className="md:mx-3 text-xl">
+            <li className="mb-2 md:my-0 md:mx-3 text-xl">
               <button onClick={handleLogOut} className="btn btn-primary btn-sm">
                 Sign Out
               </button>
             </li>
             <Tooltip title={user?.displayName} arrow>
               {user?.photoURL ? (
-                <div className="avatar">
-                  <div className="md:mx-3 h-8 rounded-full ring ring-primary ">
-                    <img src={user.photoURL} alt="" />
+                <li className="md:mx-3">
+                  <div className="avatar">
+                    <div className="h-8 rounded-full ring ring-primary ">
+                      <img src={user.photoURL} alt="" />
+                    </div>
                   </div>
-                </div>
+                </li>
               ) : (
-                <UserCircleIcon className="md:mx-3 h-9"></UserCircleIcon>
+                <li className="md:mx-3">
+                  <UserCircleIcon className="h-9"></UserCircleIcon>
+                </li>
               )}
             </Tooltip>
           </>

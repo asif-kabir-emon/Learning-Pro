@@ -7,7 +7,7 @@ const Courses = () => {
 
   return (
     <div className="pt-6">
-      <p className="text-3xl md:text-xl lg:text-3xl md:font-bold lg:font-normal text-center md:pl-6">
+      <p className="text-3xl md:text-2xl lmd:font-bold lg:font-normal text-center md:pl-6">
         Total Courses found: {data.length}
       </p>
       <div className="mt-6 mx-4 md:pl-6 flex justify-center ">

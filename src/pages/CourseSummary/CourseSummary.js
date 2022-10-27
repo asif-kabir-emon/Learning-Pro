@@ -14,6 +14,7 @@ const CourseSummary = () => {
     price,
     total_enrolled,
     rating,
+    duration,
   } = course;
 
   const ref = createRef();
@@ -22,12 +23,12 @@ const CourseSummary = () => {
     <div>
       <div className="p-5 mb-20 w-full" ref={ref}>
         <div className="px-6 py-4">
-          <div className="flex justify-between items-center my-4">
+          <div className="flex flex-col-reverse md:flex-row justify-between md:items-center my-4">
             <div className="font-bold text-5xl mb-2">{title}</div>
             <Pdf targetRef={ref} filename="code-example.pdf" scale={0.6}>
               {({ toPdf }) => (
                 <button onClick={toPdf}>
-                  <div className="flex justify-center items-center">
+                  <div className="flex items-center">
                     <button onClick={toPdf}>
                       <ArrowDownCircleIcon className="h-10"></ArrowDownCircleIcon>
                     </button>
@@ -49,13 +50,15 @@ const CourseSummary = () => {
             <span className="text-lg ">{instructor.name}</span>
           </div>
 
-          <p className="my-2 text-sm  flex items-center">
+          <p className="my-2 text-sm flex items-center">
             Course Rating:
             <StarIcon className="h-5 text-yellow-400 mx-1"></StarIcon>
             {rating.number}
           </p>
 
-          <p className="text-gray-700 text-base">{details}</p>
+          <p className="my-2 text-sm ">Course Duration: {duration}</p>
+
+          <p className="text-gray-700 mt-4 text-base text-justify">{details}</p>
 
           <p className="my-4 text-xl text-emerald-600">
             Totol Enrolled: {total_enrolled}
