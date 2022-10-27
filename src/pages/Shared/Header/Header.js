@@ -5,10 +5,8 @@ import { AuthContext } from "../../../context/UserContexts";
 import { UserCircleIcon, MoonIcon, SunIcon } from "@heroicons/react/24/solid";
 
 const Header = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, theme, setTheme } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
-  const [theme, setTheme] = useState("light");
-  localStorage.setItem("theme", "light");
 
   const handleLogOut = () => {
     logOut()
@@ -24,6 +22,7 @@ const Header = () => {
     if (theme === "light") {
       setTheme("dark");
       localStorage.setItem("theme", "dark");
+      console.log(theme);
     } else if (theme === "dark") {
       setTheme("light");
       localStorage.setItem("theme", "light");
@@ -32,7 +31,11 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-slate-400 flex items-center w-full py-3 ">
+    <div
+      className={`flex items-center w-full py-3 ${
+        theme === "dark" ? "bg-indigo-700" : "bg-slate-400"
+      }`}
+    >
       <NavLink to="/" className="btn btn-ghost normal-case text-xl lg:text-2xl">
         <img src="logo.png" alt="" className="w-6 lg:w-8 mr-2" />
         Learning Pro
@@ -44,9 +47,9 @@ const Header = () => {
         {open ? <XMarkIcon></XMarkIcon> : <Bars3Icon></Bars3Icon>}
       </div>
       <ul
-        className={`bg-slate-400 text-center md:flex md:items-center md:text-lg w-full py-3 justify-center md:justify-end md:mr-5 md:mx-auto md:py-0 absolute md:static duration-100 ease-in ${
+        className={`text-center md:flex md:items-center md:text-lg w-full py-3 justify-center md:justify-end md:mr-5 md:mx-auto md:py-0 absolute md:static duration-100 ease-in ${
           open ? " top-12" : "top-[-200px]"
-        }`}
+        }  ${theme === "dark" ? "bg-indigo-700" : "bg-slate-400"}`}
       >
         <li className="md:mx-3">
           <NavLink to="/courses">Courses</NavLink>
@@ -60,7 +63,12 @@ const Header = () => {
         {user?.uid ? (
           <>
             <li className="mb-2 md:mb-0 md:my-0 md:mx-3 text-xl">
-              <button onClick={handleLogOut} className="btn btn-primary btn-sm">
+              <button
+                onClick={handleLogOut}
+                className={`btn btn-sm  ${
+                  theme === "dark" ? "btn-secondary" : "btn-primary"
+                }`}
+              >
                 Sign Out
               </button>
             </li>

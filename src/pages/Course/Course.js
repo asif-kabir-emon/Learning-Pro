@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { StarIcon } from "@heroicons/react/24/solid";
+import { AuthContext } from "../../context/UserContexts";
 
 const Course = ({ course }) => {
   const { _id, image_url, title, details, rating, price } = course;
+  const { theme } = useContext(AuthContext);
   return (
-    <div className="md:w-96 lg:w-80 2xl:w-96 bg-base-100 shadow-xl rounded-lg">
+    <div
+      className={`md:w-96 lg:w-80 2xl:w-96 bg-base-100 shadow-xl rounded-lg ${
+        theme === "dark" ? "text-black" : "text-black"
+      }`}
+    >
       <div>
         <img
           src={image_url}

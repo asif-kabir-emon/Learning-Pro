@@ -4,7 +4,7 @@ import { AuthContext } from "../../context/UserContexts";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const { createAccount, updateUserProfile, verifyEmail } =
+  const { createAccount, updateUserProfile, verifyEmail, theme } =
     useContext(AuthContext);
   const [error, setError] = useState("");
   const [accepted, setAccepted] = useState(false);
@@ -59,7 +59,11 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-200">
+    <div
+      className={`min-h-screen ${
+        theme === "dark" ? "text-black" : "bg-slate-200"
+      }`}
+    >
       <div className="flex flex-col items-center">
         <div className="mt-20 text-center">
           <h1 className="text-4xl md:text-5xl font-bold">

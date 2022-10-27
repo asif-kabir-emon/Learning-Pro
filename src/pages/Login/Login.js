@@ -12,6 +12,7 @@ const Login = () => {
     loginWithEmailPassword,
     loginWithGoogle,
     loginWithGithub,
+    theme,
   } = useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -96,7 +97,11 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-200">
+    <div
+      className={`min-h-screen ${
+        theme === "dark" ? "text-black" : "bg-slate-200"
+      }`}
+    >
       <div className="flex flex-col items-center">
         <div className="mt-20 text-center">
           <h1 className="text-4xl md:text-5xl font-bold">Please Login Now</h1>

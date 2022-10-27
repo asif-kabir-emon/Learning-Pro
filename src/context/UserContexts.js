@@ -22,6 +22,7 @@ const providerGithub = new GithubAuthProvider();
 const UserContexts = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [theme, setTheme] = useState("light");
 
   const createAccount = (email, password) => {
     setLoading(true);
@@ -80,6 +81,8 @@ const UserContexts = ({ children }) => {
     logOut,
     updateUserProfile,
     verifyEmail,
+    theme,
+    setTheme,
   };
   return (
     <div>

@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../context/UserContexts";
 
 const Blog = () => {
+  const { theme } = useContext(AuthContext);
   return (
-    <div className="flex justify-center">
+    <div className="min-h-screen flex justify-center">
       <div className="w-3/4">
-        <div className="bg-gray-300 rounded-md my-4">
-          <h3 className="md:text-2xl font-bold bg-gray-400 m-0 rounded-t-md px-3 py-2">
+        <div
+          className={`${
+            theme === "dark" ? "bg-indigo-400 text-black" : "bg-gray-300"
+          } rounded-md my-4`}
+        >
+          <h3
+            className={`md:text-2xl font-bold ${
+              theme === "dark" ? "bg-indigo-500" : "bg-gray-400"
+            } m-0 rounded-t-md px-3 py-2`}
+          >
             what is cors?
           </h3>
           <p className="text-xs md:text-base px-3 py-5">
@@ -16,8 +26,16 @@ const Blog = () => {
             videos.
           </p>
         </div>
-        <div className="bg-gray-300 rounded-md my-4">
-          <h3 className="md:text-2xl font-bold bg-gray-400 m-0 rounded-t-md px-3 py-2">
+        <div
+          className={`${
+            theme === "dark" ? "bg-indigo-400 text-black" : "bg-gray-300"
+          } rounded-md my-4`}
+        >
+          <h3
+            className={`md:text-2xl font-bold ${
+              theme === "dark" ? "bg-indigo-500" : "bg-gray-400"
+            } m-0 rounded-t-md px-3 py-2`}
+          >
             Why are you using firebase? What other options do you have to
             implement authentication?
           </h3>
@@ -29,8 +47,16 @@ const Blog = () => {
             and Twitter, and more.
           </p>
         </div>
-        <div className="bg-gray-300 rounded-md my-4">
-          <h3 className="md:text-2xl font-bold bg-gray-400 m-0 rounded-t-md px-3 py-2">
+        <div
+          className={`${
+            theme === "dark" ? "bg-indigo-400 text-black" : "bg-gray-300"
+          } rounded-md my-4`}
+        >
+          <h3
+            className={`md:text-2xl font-bold ${
+              theme === "dark" ? "bg-indigo-500" : "bg-gray-400"
+            } m-0 rounded-t-md px-3 py-2`}
+          >
             How does the private route work?
           </h3>
           <p className="text-xs md:text-base px-3 py-5">
@@ -41,8 +67,16 @@ const Blog = () => {
             (Logged in).
           </p>
         </div>
-        <div className="bg-gray-300 rounded-md my-4">
-          <h3 className="md:text-2xl font-bold bg-gray-400 m-0 rounded-t-md px-3 py-2">
+        <div
+          className={`${
+            theme === "dark" ? "bg-indigo-400 text-black" : "bg-gray-300"
+          } rounded-md my-4`}
+        >
+          <h3
+            className={`md:text-2xl font-bold ${
+              theme === "dark" ? "bg-indigo-500" : "bg-gray-400"
+            } m-0 rounded-t-md px-3 py-2`}
+          >
             What is Node? How does Node work?
           </h3>
           <p className="text-xs md:text-base px-3 py-5">
