@@ -1,6 +1,7 @@
-import React from "react";
+import React, { createRef } from "react";
 import { useLoaderData, Link } from "react-router-dom";
 import { ArrowDownCircleIcon, StarIcon } from "@heroicons/react/24/solid";
+import Pdf from "react-to-pdf";
 
 const CourseSummary = () => {
   const course = useLoaderData();
@@ -15,15 +16,29 @@ const CourseSummary = () => {
     rating,
   } = course;
 
+  const ref = createRef();
+
   return (
     <div>
-      <div className="p-5 mb-20 w-full rounded overflow-hidden ">
-        <img className="w-full" src={image_url} alt="Sunset in the mountains" />
+      <div className="p-5 mb-20 w-full" ref={ref}>
         <div className="px-6 py-4">
           <div className="flex justify-between items-center my-4">
             <div className="font-bold text-5xl mb-2">{title}</div>
-            <ArrowDownCircleIcon className="h-10"></ArrowDownCircleIcon>
+            <Pdf targetRef={ref} filename="code-example.pdf" scale={0.6}>
+              {({ toPdf }) => (
+                <button onClick={toPdf}>
+                  <div className="flex justify-center items-center">
+                    <button onClick={toPdf}>
+                      <ArrowDownCircleIcon className="h-10"></ArrowDownCircleIcon>
+                    </button>
+                    <span className="ml-1 text-lg">Download Details</span>
+                  </div>
+                </button>
+              )}
+            </Pdf>
           </div>
+
+          <img className="w-full" src={image_url} alt="" />
 
           <div className="my-5 flex items-center">
             <div className="avatar mr-2">
@@ -43,13 +58,13 @@ const CourseSummary = () => {
           <p className="text-gray-700 text-base">{details}</p>
 
           <p className="my-4 text-xl text-emerald-600">
-            Totol Enrolled: ${total_enrolled}
+            Totol Enrolled: {total_enrolled}
           </p>
           <p className="font-bold text-2xl text-emerald-600">
             Course Price: ${price}
           </p>
         </div>
-        <div className="px-6 pt-4 pb-2">
+        <div className="px-5 pt-4 pb-2">
           <Link to={`/course-out/${_id}`}>
             <button className="btn btn-info w-full">Get premium access</button>
           </Link>
