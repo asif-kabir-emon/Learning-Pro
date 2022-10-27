@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { AuthContext } from "../../../context/UserContexts";
@@ -7,6 +7,7 @@ import { UserCircleIcon, MoonIcon, SunIcon } from "@heroicons/react/24/solid";
 const Header = () => {
   const { user, logOut, theme, setTheme } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
+  const [isChecked, setIsChecked] = useState(true);
 
   const handleLogOut = () => {
     logOut()
@@ -18,14 +19,28 @@ const Header = () => {
       });
   };
 
+  useEffect(() => {
+    const tempTheme = localStorage.getItem("theme");
+    console.log(tempTheme);
+
+    if (tempTheme === "light") {
+      setTheme("light");
+      setIsChecked(false);
+    } else {
+      setTheme("dark");
+      setIsChecked(true);
+    }
+  }, []);
+
   const handleTheme = () => {
     if (theme === "light") {
       setTheme("dark");
       localStorage.setItem("theme", "dark");
-      console.log(theme);
+      setIsChecked(true);
     } else if (theme === "dark") {
       setTheme("light");
       localStorage.setItem("theme", "light");
+      setIsChecked(false);
     }
     console.log(theme);
   };
@@ -102,7 +117,12 @@ const Header = () => {
         <li className="flex justify-center">
           <div className="md:mx-3 flex items-center">
             <SunIcon className="w-8 mr-1"></SunIcon>
-            <input type="checkbox" className="toggle" onClick={handleTheme} />
+            <input
+              type="checkbox"
+              className="toggle"
+              onClick={handleTheme}
+              checked={isChecked}
+            />
             <MoonIcon className="w-6 ml-1"></MoonIcon>
           </div>
         </li>

@@ -9,7 +9,7 @@ const Course = ({ course }) => {
   return (
     <div
       className={`md:w-96 lg:w-80 2xl:w-96 bg-base-100 shadow-xl rounded-lg ${
-        theme === "dark" ? "text-black bg-stone-400" : "text-black"
+        theme === "dark" ? "text-black bg-sky-600" : "text-black"
       }`}
     >
       <div>
@@ -28,7 +28,9 @@ const Course = ({ course }) => {
               <Link
                 to={`/course/${_id}`}
                 className={`${
-                  theme === "dark" ? "text-teal-800" : " text-blue-400 "
+                  theme === "dark"
+                    ? "text-indigo-900 font-bold underline"
+                    : " text-blue-400 "
                 }`}
               >
                 Read more
@@ -48,7 +50,13 @@ const Course = ({ course }) => {
         </div>
         <div className="card-actions mt-3 justify-center">
           <Link to={`/course/${_id}`} className="w-full">
-            <button className="btn btn-info w-full">Read In Deatil</button>
+            <button
+              className={`btn ${
+                theme === "dark" ? "btn-primary" : "btn-info"
+              } w-full`}
+            >
+              Read In Deatil
+            </button>
           </Link>
         </div>
       </div>

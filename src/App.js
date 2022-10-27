@@ -7,6 +7,7 @@ import { AuthContext } from "./context/UserContexts";
 
 function App() {
   const { theme } = useContext(AuthContext);
+
   return (
     <div id={theme}>
       <RouterProvider router={routes}></RouterProvider>

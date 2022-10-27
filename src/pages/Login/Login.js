@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 
 const Login = () => {
   const {
-    setExc,
     setUser,
     setLoading,
     loginWithEmailPassword,
@@ -31,7 +30,6 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         setError("");
-        setExc("Op");
         if (user.uid) {
           toast.success("Successfully login");
           navigate(from, { replace: true });
@@ -82,8 +80,8 @@ const Login = () => {
         setError("");
         // navigate(from, { replace: true });
         // toast.success("Successfully login");
-        setUser(user);
         if (user.emailVerified) {
+          setUser(user);
           toast.success("Successfully login");
           navigate(from, { replace: true });
         } else {
