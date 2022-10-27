@@ -10,6 +10,7 @@ import Register from "../pages/Register/Register";
 import CourseSummary from "../pages/CourseSummary/CourseSummary";
 import CoursesLayout from "../layout/CoursesLayout";
 import CheckOut from "../pages/CheckOut/CheckOut";
+import FAQ from "../pages/FAQ/FAQ";
 import PrivateRoute from "./PrivateRoute";
 
 const routes = createBrowserRouter([
@@ -63,7 +64,7 @@ const routes = createBrowserRouter([
           },
         ],
       },
-      { path: "/faq", element: <div>FAQ</div> },
+      { path: "/faq", element: <FAQ></FAQ> },
       { path: "/blog", element: <Blog></Blog> },
       { path: "/login", element: <Login></Login> },
       { path: "/register", element: <Register></Register> },
