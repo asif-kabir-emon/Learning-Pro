@@ -28,14 +28,16 @@ const Login = () => {
 
     loginWithEmailPassword(email, password)
       .then((result) => {
-        const user = result.user;
+        // const user = result.user;
         setError("");
-        if (user.uid) {
-          toast.success("Successfully login");
-          navigate(from, { replace: true });
-        } else {
-          toast.error("Please verify your email address.");
-        }
+        navigate(from, { replace: true });
+        toast.success("Successfully login");
+        // if (user.uid) {
+        //   toast.success("Successfully login");
+        //   navigate(from, { replace: true });
+        // } else {
+        //   toast.error("Please verify your email address.");
+        // }
         form.reset();
       })
       .catch((error) => {
@@ -52,14 +54,15 @@ const Login = () => {
 
     loginWithGoogle()
       .then((result) => {
-        const user = result.user;
+        // const user = result.user;
         setError("");
-        if (user.emailVerified) {
-          toast.success("Successfully login");
-          navigate(from, { replace: true });
-        } else {
-          toast.error("Please verify your email address.");
-        }
+        navigate(from, { replace: true });
+        toast.success("Successfully login");
+        // if (user.emailVerified) {
+        //   toast.success("Successfully login");
+        // } else {
+        //   toast.error("Please verify your email address.");
+        // }
       })
       .catch((error) => {
         setError(error.message);
@@ -75,18 +78,16 @@ const Login = () => {
 
     loginWithGithub()
       .then((result) => {
-        const user = result.user;
-        user.emailVerified = true;
+        // const user = result.user;
         setError("");
-        // navigate(from, { replace: true });
-        // toast.success("Successfully login");
-        if (user.emailVerified) {
-          setUser(user);
-          toast.success("Successfully login");
-          navigate(from, { replace: true });
-        } else {
-          toast.error("Please verify your email address.");
-        }
+        toast.success("Successfully login");
+        navigate(from, { replace: true });
+        // if (user.emailVerified) {
+        //   toast.success("Successfully login");
+        //   navigate(from, { replace: true });
+        // } else {
+        //   toast.error("Please verify your email address.");
+        // }
       })
       .catch((error) => {
         setError(error.message);
