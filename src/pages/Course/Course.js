@@ -9,7 +9,7 @@ const Course = ({ course }) => {
   return (
     <div
       className={`md:w-96 lg:w-80 2xl:w-96 bg-base-100 shadow-xl rounded-lg ${
-        theme === "dark" ? "text-black" : "text-black"
+        theme === "dark" ? "text-black bg-stone-400" : "text-black"
       }`}
     >
       <div>
@@ -19,13 +19,18 @@ const Course = ({ course }) => {
           className="rounded-t-lg object-cover"
         />
       </div>
-      <div className="card-body">
+      <div className={`card-body`}>
         <h2 className="card-title">{title}</h2>
         <p className="text-justify">
           {details.length > 100 ? (
             <>
               {details.slice(0, 100) + " ... "}
-              <Link to={`/course/${_id}`} className=" text-blue-400">
+              <Link
+                to={`/course/${_id}`}
+                className={`${
+                  theme === "dark" ? "text-teal-800" : " text-blue-400 "
+                }`}
+              >
                 Read more
               </Link>
             </>
