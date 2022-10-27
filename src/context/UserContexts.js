@@ -23,6 +23,7 @@ const UserContexts = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [theme, setTheme] = useState("light");
+  const [exc, setExc] = useState("Oh");
 
   const createAccount = (email, password) => {
     setLoading(true);
@@ -61,7 +62,15 @@ const UserContexts = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser === null || currentUser.emailVerified) {
         setUser(currentUser);
+        console.log("kk");
+      } else {
+        if (exc === "Op") {
+          setUser(currentUser);
+          console.log("k");
+        }
+        setExc("Oh");
       }
+
       setLoading(false);
     });
     return () => {
@@ -83,6 +92,7 @@ const UserContexts = ({ children }) => {
     verifyEmail,
     theme,
     setTheme,
+    setExc,
   };
   return (
     <div>

@@ -1,8 +1,8 @@
 import React, { createRef, useContext } from "react";
 import { useLoaderData, Link } from "react-router-dom";
+import { AuthContext } from "../../context/UserContexts";
 import { ArrowDownCircleIcon, StarIcon } from "@heroicons/react/24/solid";
 import Pdf from "react-to-pdf";
-import { AuthContext } from "../../context/UserContexts";
 
 const CourseSummary = () => {
   const { theme } = useContext(AuthContext);
@@ -41,7 +41,7 @@ const CourseSummary = () => {
             </Pdf>
           </div>
 
-          <img className="w-full" src={image_url} alt="" />
+          <img className="w-full" src={image_url} alt="Course_Photo" />
 
           <div className="my-5 flex items-center">
             <div className="avatar mr-2">
@@ -67,8 +67,8 @@ const CourseSummary = () => {
           </p>
 
           <p
-            className={`text-gray-700 mt-4 text-base text-justify ${
-              theme === "dark" ? "text-white" : "text-black"
+            className={`text-gray-700 mt-4 text-lg text-justify ${
+              theme === "dark" ? " required: text-white" : "text-black"
             }`}
           >
             {details}
