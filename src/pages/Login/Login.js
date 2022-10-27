@@ -1,14 +1,21 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub } from "@react-icons/all-files/fa/FaGithub";
 import googleIcon from "../../assets/icons/googleIcon.png";
 import { AuthContext } from "../../context/UserContexts";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const { loginWithEmailPassword, loginWithGoogle, loginWithGithub } =
-    useContext(AuthContext);
+  const {
+    setLoading,
+    loginWithEmailPassword,
+    loginWithGoogle,
+    loginWithGithub,
+  } = useContext(AuthContext);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
@@ -17,17 +24,24 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    // console.log(email, password);
-
     loginWithEmailPassword(email, password)
-      .then(() => {
-        setError("");
+      .then((result) => {
+        const user = result.user;
         form.reset();
-        toast.success("Successfully login");
+        if (user.emailVerified) {
+          toast.success("Successfully login");
+          navigate(from, { replace: true });
+        } else {
+          toast.error("Please verify your email address.");
+        }
+        setError("");
       })
       .catch((error) => {
         setError(error.message);
         toast.error("Failed to login");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -35,11 +49,22 @@ const Login = () => {
     event.preventDefault();
 
     loginWithGoogle()
-      .then(() => {
-        console.log("Successfully Login");
+      .then((result) => {
+        const user = result.user;
+        if (user.emailVerified) {
+          toast.success("Successfully login");
+          navigate(from, { replace: true });
+        } else {
+          toast.error("Please verify your email address.");
+        }
+        setError("");
       })
       .catch((error) => {
-        console.error(error.message);
+        setError(error.message);
+        toast.error("Failed to login");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -47,11 +72,22 @@ const Login = () => {
     event.preventDefault();
 
     loginWithGithub()
-      .then(() => {
-        console.log("Successfully Login");
+      .then((result) => {
+        const user = result.user;
+        if (user.emailVerified) {
+          toast.success("Successfully login");
+          navigate(from, { replace: true });
+        } else {
+          toast.error("Please verify your email address.");
+        }
+        setError("");
       })
       .catch((error) => {
-        console.error(error.message);
+        setError(error.message);
+        toast.error("Failed to login");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 

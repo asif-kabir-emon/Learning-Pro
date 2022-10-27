@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { StarIcon } from "@heroicons/react/24/solid";
 
 const Course = ({ course }) => {
-  const { image_url, title, details, rating, total_enrolled, price } = course;
+  const { _id, image_url, title, details, rating, price } = course;
   return (
     <div className="md:w-96 lg:w-80 2xl:w-96 bg-base-100 shadow-xl rounded-lg">
       <div>
@@ -19,7 +19,9 @@ const Course = ({ course }) => {
           {details.length > 100 ? (
             <>
               {details.slice(0, 100) + " ... "}
-              <Link className=" text-blue-400">Read more</Link>
+              <Link to={`/course/${_id}`} className=" text-blue-400">
+                Read more
+              </Link>
             </>
           ) : (
             <>{details}</>
@@ -34,7 +36,9 @@ const Course = ({ course }) => {
           <span>Price: ${price}</span>
         </div>
         <div className="card-actions mt-3 justify-center">
-          <button className="btn btn-info w-full">Read In Deatils</button>
+          <Link to={`/course/${_id}`} className="w-full">
+            <button className="btn btn-info w-full">Read In Deatils</button>
+          </Link>
         </div>
       </div>
     </div>

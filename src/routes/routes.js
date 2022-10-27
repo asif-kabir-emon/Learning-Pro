@@ -7,7 +7,10 @@ import Login from "../pages/Login/Login";
 import ErrorPage from "../pages/Others/ErrorPage/ErrorPage";
 import Terms from "../pages/Others/Terms/Terms";
 import Register from "../pages/Register/Register";
+import CourseSummary from "../pages/CourseSummary/CourseSummary";
 import CoursesLayout from "../layout/CoursesLayout";
+import CheckOut from "../pages/CheckOut/CheckOut";
+import PrivateRoute from "./PrivateRoute";
 
 const routes = createBrowserRouter([
   {
@@ -33,6 +36,22 @@ const routes = createBrowserRouter([
             element: <Courses></Courses>,
             loader: ({ params }) =>
               fetch(`http://localhost:4000/category/${params.id}`),
+          },
+          {
+            path: "/course/:id",
+            element: <CourseSummary></CourseSummary>,
+            loader: ({ params }) =>
+              fetch(`http://localhost:4000/course/${params.id}`),
+          },
+          {
+            path: "/course-out/:id",
+            element: (
+              <PrivateRoute>
+                <CheckOut></CheckOut>
+              </PrivateRoute>
+            ),
+            loader: ({ params }) =>
+              fetch(`http://localhost:4000/course/${params.id}`),
           },
         ],
       },
